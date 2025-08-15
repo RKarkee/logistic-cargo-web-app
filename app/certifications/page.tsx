@@ -336,7 +336,7 @@ export default function CertificationsPage() {
             <div className="text-center max-w-3xl mx-auto">
               <h2 className="text-3xl lg:text-4xl font-bold mb-4">Trust the Certified Experts</h2>
               <p className="text-xl text-primary-100 mb-8">
-                When you choose LogiFlow Solutions, you're partnering with a certified, compliant, and trusted logistics
+                When you choose DpNEx Logistics, you're partnering with a certified, compliant, and trusted logistics
                 provider.
               </p>
               <motion.div

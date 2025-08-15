@@ -10,7 +10,7 @@ export const successStories = [
     outcome:
       "Reduced fulfillment time by 60% and achieved 99.5% on-time delivery rate, leading to 40% increase in customer satisfaction.",
     testimonial:
-      "LogiFlow Solutions didn't just solve our logistics problems - they became a strategic partner in our growth.",
+      "DpNEx Logistics didn't just solve our logistics problems - they became a strategic partner in our growth.",
     clientLogo: "/placeholder.svg?height=40&width=120",
   },
   {

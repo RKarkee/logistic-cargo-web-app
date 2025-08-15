@@ -5,7 +5,7 @@ export const testimonials = [
     company: "TechStart Inc.",
     role: "Operations Manager",
     content:
-      "LogiFlow Solutions transformed our supply chain. Their reliability and transparency have been game-changers for our growing business.",
+      "DpNEx Logistics transformed our supply chain. Their reliability and transparency have been game-changers for our growing business.",
     rating: 5,
     image: "/placeholder.svg?height=60&width=60",
   },

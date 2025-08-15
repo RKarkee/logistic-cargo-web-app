@@ -1,6 +1,6 @@
 export const aboutData = {
   hero: {
-    title: "About LogiFlow Solutions",
+    title: "About DpNEx Logistics",
     subtitle: "Building the future of logistics, one delivery at a time",
     description:
       "For over 15 years, we've been the trusted logistics partner for businesses across the nation, delivering excellence through innovation, reliability, and unwavering commitment to our clients' success.",
@@ -9,7 +9,7 @@ export const aboutData = {
   story: {
     title: "Our Story",
     content: [
-      "Founded in 2009 with a single truck and a vision to revolutionize logistics, LogiFlow Solutions has grown into one of the nation's most trusted logistics providers. What started as a local delivery service has evolved into a comprehensive logistics network serving businesses of all sizes.",
+      "Founded in 2009 with a single truck and a vision to revolutionize logistics, DpNEx Logistics has grown into one of the nation's most trusted logistics providers. What started as a local delivery service has evolved into a comprehensive logistics network serving businesses of all sizes.",
       "Our journey began when our founder, recognizing the gap between traditional shipping methods and modern business needs, set out to create a logistics company that prioritized transparency, reliability, and customer success above all else.",
       "Today, we operate a fleet of over 120 vehicles, manage multiple distribution centers, and serve hundreds of clients across various industries. But our core values remain unchanged: integrity, innovation, and an unwavering commitment to excellence.",
     ],

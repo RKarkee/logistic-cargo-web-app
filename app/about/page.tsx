@@ -74,7 +74,7 @@ export default function AboutPage() {
               <div className="relative">
                 <AnimatedImage
                   src="/placeholder.svg?height=500&width=600"
-                  alt="LogiFlow Solutions company history"
+                  alt="DpNEx Logistics company history"
                   width={600}
                   height={500}
                   className="rounded-2xl shadow-lg"

@@ -1,9 +1,10 @@
 export const companyInfo = {
-  name: "LogiFlow Solutions",
-  tagline: "Your Trusted Logistics Partner",
+  name: "DpNEx Logistics",
+  tagline: "DpNEx Logistics",
   description:
-    "Delivering excellence in cargo transportation, warehousing, and specialized logistics solutions across the nation.",
-
+    "Delivering excellence in cargo transportation, warehousing, and specialized logistics solutions across the nation. Move faster and smarter, missioned to ensure your shipments are handled with care every time. Based in Nepal, available at 0097715137113/7114, info@dpnexlogistic.com, dpnexlogistic.com to eliminating logistics headaches.",
+  content:
+    "dpnexlogistic, dpnex, courier, cargo, logistic, kathmandu, Nepal, ship, dhl, fedex, parcel, home, delivery, skynet, tia",
   contact: {
     phone: "+1 (555) 123-4567",
     email: "info@logiflowsolutions.com",
@@ -12,9 +13,9 @@ export const companyInfo = {
   },
 
   social: {
-    linkedin: "https://linkedin.com/company/logiflowsolutions",
-    twitter: "https://twitter.com/logiflowsolutions",
-    facebook: "https://facebook.com/logiflowsolutions",
+    linkedin: "https://linkedin.com/company/dpnex-logistics",
+    twitter: "https://twitter.com/dpnex_logistics",
+    facebook: "https://facebook.com/dpnex-logistics",
   },
 
   stats: {
@@ -23,4 +24,4 @@ export const companyInfo = {
     deliveriesCompleted: "50,000+",
     fleetSize: 120,
   },
-}
+};

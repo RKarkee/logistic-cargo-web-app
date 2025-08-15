@@ -90,7 +90,7 @@ export default function HomePage() {
               <div className="relative">
                 <AnimatedImage
                   src="/placeholder.svg?height=500&width=600"
-                  alt="LogiFlow Solutions Logistics Operations"
+                  alt="DpNEx Logistics Logistics Operations"
                   width={600}
                   height={500}
                   className="rounded-2xl shadow-2xl"
