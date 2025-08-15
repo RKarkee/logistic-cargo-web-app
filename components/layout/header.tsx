@@ -246,8 +246,8 @@ export function Header() {
                     <Link
                       href={item.href}
                       className={cn(
-                        "block py-2 text-gray-700 hover:text-primary-600 transition-colors",
-                        pathname === item.href && "text-primary-600 font-medium"
+                        "block py-2 text-primary-900 hover:text-accent-500 transition-colors",
+                        pathname === item.href && "text-accent-500 font-medium"
                       )}
                       onClick={() => setMobileMenuOpen(false)}
                     >
@@ -259,7 +259,10 @@ export function Header() {
                           <Link
                             key={subItem.name}
                             href={subItem.href}
-                            className="block py-1 text-sm text-gray-600 hover:text-primary-600 transition-colors"
+                            className={cn(
+                              "block py-1 text-sm text-primary-900 hover:text-accent-500 transition-colors",
+                              pathname === subItem.href && "text-accent-500 font-medium"
+                            )}
                             onClick={() => setMobileMenuOpen(false)}
                           >
                             {subItem.name}
