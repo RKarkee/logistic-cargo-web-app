@@ -29,54 +29,30 @@ const config: Config = {
         primary: {
           DEFAULT: theme.colors.primary[600],
           foreground: "hsl(var(--primary-foreground))",
-          50: theme.colors.primary[50],
-          100: theme.colors.primary[100],
-          200: theme.colors.primary[200],
-          300: theme.colors.primary[300],
-          400: theme.colors.primary[400],
-          500: theme.colors.primary[500],
-          600: theme.colors.primary[600],
-          700: theme.colors.primary[700],
-          800: theme.colors.primary[800],
-          900: theme.colors.primary[900],
+          ...theme.colors.primary,
         },
         secondary: {
           DEFAULT: theme.colors.secondary[600],
           foreground: "hsl(var(--secondary-foreground))",
-          50: theme.colors.secondary[50],
-          100: theme.colors.secondary[100],
-          200: theme.colors.secondary[200],
-          300: theme.colors.secondary[300],
-          400: theme.colors.secondary[400],
-          500: theme.colors.secondary[500],
-          600: theme.colors.secondary[600],
-          700: theme.colors.secondary[700],
-          800: theme.colors.secondary[800],
-          900: theme.colors.secondary[900],
+          ...theme.colors.secondary,
+        },
+        accent: {
+          ...theme.colors.accent,
+        },
+        neutral: {
+          ...theme.colors.neutral,
+        },
+        footer: {
+          ...theme.colors.footer,
         },
         success: {
-          50: theme.colors.success[50],
-          100: theme.colors.success[100],
-          200: theme.colors.success[200],
-          300: theme.colors.success[300],
-          400: theme.colors.success[400],
-          500: theme.colors.success[500],
-          600: theme.colors.success[600],
-          700: theme.colors.success[700],
-          800: theme.colors.success[800],
-          900: theme.colors.success[900],
+          ...theme.colors.success,
         },
         warning: {
-          50: theme.colors.warning[50],
-          100: theme.colors.warning[100],
-          200: theme.colors.warning[200],
-          300: theme.colors.warning[300],
-          400: theme.colors.warning[400],
-          500: theme.colors.warning[500],
-          600: theme.colors.warning[600],
-          700: theme.colors.warning[700],
-          800: theme.colors.warning[800],
-          900: theme.colors.warning[900],
+          ...theme.colors.warning,
+        },
+        error: {
+          ...theme.colors.error,
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -85,10 +61,6 @@ const config: Config = {
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -100,6 +72,8 @@ const config: Config = {
         },
       },
       borderRadius: {
+        card: theme.borderRadius.card,
+        button: theme.borderRadius.button,
         lg: theme.borderRadius.card,
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
@@ -107,6 +81,11 @@ const config: Config = {
       boxShadow: {
         card: theme.shadows.card,
         hover: theme.shadows.hover,
+        accent: theme.shadows.accent,
+      },
+      spacing: {
+        section: theme.spacing.section,
+        container: theme.spacing.container,
       },
       keyframes: {
         "accordion-down": {

@@ -69,7 +69,7 @@ export default function HomePage() {
                   transition={{ delay: 1.3, duration: 0.6 }}
                 >
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button size="lg" asChild>
+                    <Button size="lg" asChild className="bg-primary-600 hover:bg-primary-900 text-white">
                       <Link href="/quote">
                         Request a Quote
                         <motion.div className="ml-2" whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
@@ -99,9 +99,9 @@ export default function HomePage() {
                   priority
                 />
                 {/* Floating badge */}
-                <FloatingElement duration={3} amplitude={8}>
+                <FloatingElement duration={9} amplitude={8}>
                   <motion.div
-                    className="absolute -top-4 -right-4 bg-primary-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg"
+                    className="absolute -top-4 -right-4 bg-primary-600 hover:bg-primary-900 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg"
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 1.5, duration: 0.5 }}
@@ -173,7 +173,7 @@ export default function HomePage() {
         <Container>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Why Choose LogiFlow Solutions?</h2>
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Why Choose DpNEx Logistics?</h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 {whyChooseUs.map((item, index) => (
                   <div key={index} className="flex items-start space-x-3">
@@ -183,7 +183,7 @@ export default function HomePage() {
                 ))}
               </div>
               <div className="mt-8">
-                <Button asChild>
+                <Button asChild className="bg-primary-600 hover:bg-primary-900 text-white">
                   <Link href="/about">
                     Learn More About Us
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -293,7 +293,7 @@ export default function HomePage() {
       </Section>
 
       {/* CTA Section */}
-      <Section className="bg-primary-600 text-white">
+      <Section className="bg-primary-900 text-white">
         <Container>
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">Ready to Optimize Your Logistics?</h2>
@@ -301,7 +301,7 @@ export default function HomePage() {
               Get a personalized quote for your shipping needs and discover how we can help your business grow.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" asChild>
+              <Button size="lg" variant="secondary" asChild className="bg-accent-500 hover:bg-accent-600 text-white">
                 <Link href="/quote">
                   Get Your Quote
                   <ArrowRight className="ml-2 h-5 w-5" />

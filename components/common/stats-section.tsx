@@ -58,7 +58,7 @@ export function StatsSection() {
   const isInView = useInView(containerRef, { once: true, margin: "-100px" })
 
   return (
-    <div className="bg-primary-600 text-white py-16 relative overflow-hidden">
+    <div className="bg-primary-900 text-white py-16 relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0">
         <motion.div

@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Menu, X, ChevronDown, Truck } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Container } from "@/components/ui/container"
-import { companyInfo } from "@/lib/data/company-info"
-import { services } from "@/lib/data/services"
-import { cn } from "@/lib/utils"
-import { motion, AnimatePresence } from "framer-motion"
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Menu, X, ChevronDown, Truck } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Container } from "@/components/ui/container";
+import { companyInfo } from "@/lib/data/company-info";
+import { services } from "@/lib/data/services";
+import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -28,12 +28,12 @@ const navigation = [
   { name: "Fleet", href: "/fleet" },
   { name: "Certifications", href: "/certifications" },
   { name: "Contact", href: "/contact" },
-]
+];
 
 export function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [servicesOpen, setServicesOpen] = useState(false)
-  const pathname = usePathname()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <motion.header
@@ -43,28 +43,31 @@ export function Header() {
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
       <Container>
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-24">
           {/* Logo */}
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link href="/" className="flex items-center space-x-2">
               <motion.div
-                className="bg-primary-600 p-2 rounded-lg"
-                whileHover={{
-                  rotate: 360,
-                  transition: { duration: 0.6 },
-                }}
+              animate={{ rotate: 0 }}
+              whileHover={{
+                rotate: 360,
+                transition: { duration: 1 },
+              }}
+              transition={{
+                type: "tween",
+                ease: "linear",
+                duration: 1,
+              }}
               >
-                <Truck className="h-6 w-6 text-white" />
+              <img
+                src="/dp-NEx.png"
+                alt="DP-NEx Portfolio Logo"
+                className="h-16 w-36 object-contain"
+                style={{ display: "block" }}
+              />
               </motion.div>
-              <motion.span
-                className="text-xl font-bold text-gray-900"
-                whileHover={{ color: "#2563eb" }}
-                transition={{ duration: 0.2 }}
-              >
-                {companyInfo.name}
-              </motion.span>
             </Link>
-          </motion.div>
+            </motion.div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
@@ -83,11 +86,18 @@ export function Header() {
                     onMouseLeave={() => setServicesOpen(false)}
                   >
                     <motion.button
-                      className="flex items-center space-x-1 text-gray-700 hover:text-primary-600 transition-colors"
+                      className={cn(
+                        "flex items-center space-x-1 transition-colors",
+                        "text-primary-900 hover:text-accent-500",
+                        servicesOpen && "text-accent-500"
+                      )}
                       whileHover={{ scale: 1.05 }}
                     >
                       <span>{item.name}</span>
-                      <motion.div animate={{ rotate: servicesOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                      <motion.div
+                        animate={{ rotate: servicesOpen ? 180 : 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
                         <ChevronDown className="h-4 w-4" />
                       </motion.div>
                     </motion.button>
@@ -106,11 +116,25 @@ export function Header() {
                               key={subItem.name}
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: subIndex * 0.05, duration: 0.2 }}
+                              transition={{
+                                delay: subIndex * 0.05,
+                                duration: 0.2,
+                              }}
                             >
-                              <Link href={subItem.href} className="block px-4 py-3 hover:bg-gray-50 transition-colors">
-                                <div className="font-medium text-gray-900">{subItem.name}</div>
-                                <div className="text-sm text-gray-500 mt-1">{subItem.description}</div>
+                              <Link
+                                href={subItem.href}
+                                className={cn(
+                                  "block px-4 py-3 transition-colors",
+                                  "text-primary-700 hover:text-accent-500 hover:bg-gray-300",
+                                  pathname === subItem.href && "text-accent-500"
+                                )}
+                              >
+                                <div className="font-medium">
+                                  {subItem.name}
+                                </div>
+                                <div className="text-sm text-gray-500 mt-1">
+                                  {subItem.description}
+                                </div>
                               </Link>
                             </motion.div>
                           ))}
@@ -119,18 +143,22 @@ export function Header() {
                     </AnimatePresence>
                   </div>
                 ) : (
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
                     <Link
                       href={item.href}
                       className={cn(
-                        "text-gray-700 hover:text-primary-600 transition-colors relative",
-                        pathname === item.href && "text-primary-600 font-medium",
+                        "transition-colors relative",
+                        "text-primary-900 hover:text-accent-500",
+                        pathname === item.href && "text-accent-500 font-medium"
                       )}
                     >
                       {item.name}
                       {pathname === item.href && (
                         <motion.div
-                          className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-600"
+                          className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent-500"
                           layoutId="activeTab"
                           transition={{ duration: 0.2 }}
                         />
@@ -145,7 +173,7 @@ export function Header() {
           {/* CTA Button */}
           <div className="hidden lg:block">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button asChild>
+              <Button asChild className="bg-primary-600 hover:bg-primary-900 text-white">
                 <Link href="/quote">Request Quote</Link>
               </Button>
             </motion.div>
@@ -219,7 +247,7 @@ export function Header() {
                       href={item.href}
                       className={cn(
                         "block py-2 text-gray-700 hover:text-primary-600 transition-colors",
-                        pathname === item.href && "text-primary-600 font-medium",
+                        pathname === item.href && "text-primary-600 font-medium"
                       )}
                       onClick={() => setMobileMenuOpen(false)}
                     >
@@ -249,7 +277,10 @@ export function Header() {
                   }}
                 >
                   <Button asChild className="w-full">
-                    <Link href="/quote" onClick={() => setMobileMenuOpen(false)}>
+                    <Link
+                      href="/quote"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       Request Quote
                     </Link>
                   </Button>
@@ -260,5 +291,5 @@ export function Header() {
         </AnimatePresence>
       </Container>
     </motion.header>
-  )
+  );
 }

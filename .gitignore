@@ -2,7 +2,28 @@
 
 # dependencies
 /node_modules
+# lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
+# logs
+logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# coverage
+coverage/
+.nyc_output/
 # next.js
 /.next/
 /out/

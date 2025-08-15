@@ -22,7 +22,7 @@ export function Footer() {
     },
   }
 
-  const itemVariants = {
+  const itemVariants:any = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
@@ -32,7 +32,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-footer-500 text-accent-700">
       <Container>
         <motion.div
           ref={ref}
@@ -49,17 +49,16 @@ export function Footer() {
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
               >
-                <motion.div
-                  className="bg-primary-600 p-2 rounded-lg"
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <Truck className="h-6 w-6 text-white" />
-                </motion.div>
-                <span className="text-xl font-bold">{companyInfo.name}</span>
+               
+                  <img
+                src="/dp-NEx.png"
+                alt="DP-NEx Portfolio Logo"
+                className="h-16 w-36 object-contain"
+                style={{ display: "block" }}
+              />
               </motion.div>
               <motion.p
-                className="text-gray-300"
+                className="text-accent-500"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
@@ -67,7 +66,7 @@ export function Footer() {
                 {companyInfo.description}
               </motion.p>
               <motion.div
-                className="flex space-x-4"
+                className="flex space-x-4  "
                 variants={{
                   hidden: {},
                   visible: {
@@ -97,7 +96,7 @@ export function Footer() {
                     }}
                     whileTap={{ scale: 0.9 }}
                   >
-                    <Link href={social.href} className="text-gray-400 hover:text-white transition-colors">
+                    <Link href={social.href} className="text-accent-500 hover:text-accent-600 transition-colors">
                       <social.icon className="h-5 w-5" />
                     </Link>
                   </motion.div>
@@ -130,7 +129,7 @@ export function Footer() {
                     }}
                     whileHover={{ x: 5, transition: { duration: 0.2 } }}
                   >
-                    <Link href={`/services/${service.id}`} className="text-gray-300 hover:text-white transition-colors">
+                    <Link href={`/services/${service.id}`} className="text-accent-500 hover:text-accent-600 transition-colors">
                       {service.title}
                     </Link>
                   </motion.li>
@@ -170,7 +169,7 @@ export function Footer() {
                     }}
                     whileHover={{ x: 5, transition: { duration: 0.2 } }}
                   >
-                    <Link href={link.href} className="text-gray-300 hover:text-white transition-colors">
+                    <Link href={link.href} className="text-accent-500 hover:text-accent-600 transition-colors">
                       {link.label}
                     </Link>
                   </motion.li>
@@ -209,14 +208,14 @@ export function Footer() {
                     whileHover={{ x: 5, transition: { duration: 0.2 } }}
                   >
                     <motion.div whileHover={{ scale: 1.2, rotate: 360 }} transition={{ duration: 0.3 }}>
-                      <contact.icon className="h-5 w-5 text-primary-400 mt-0.5 flex-shrink-0" />
+                      <contact.icon className="h-5 w-5 text-secondary-700 mt-0.5 flex-shrink-0" />
                     </motion.div>
                     {contact.href ? (
-                      <a href={contact.href} className="text-gray-300 hover:text-white transition-colors">
+                      <a href={contact.href} className="text-accent-500 hover:text-accent-600 transition-colors">
                         {contact.content}
                       </a>
                     ) : (
-                      <span className="text-gray-300">{contact.content}</span>
+                      <span className="text-accent-500 hover:text-accent-600">{contact.content}</span>
                     )}
                   </motion.div>
                 ))}
@@ -227,15 +226,15 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <motion.div
-          className="border-t border-gray-800 py-6"
+          className="border-t border-secondary-700 py-6"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ delay: 0.8, duration: 0.6 }}
         >
           <div className="flex flex-col md:flex-row justify-between items-center">
             <motion.p
-              className="text-gray-400 text-sm"
-              whileHover={{ color: "#ffffff" }}
+              className="text-accent-500 hover:text-accent-600 text-sm"
+              // whileHover={{ color: "#ffffff" }}
               transition={{ duration: 0.2 }}
             >
               © {new Date().getFullYear()} {companyInfo.name}. All rights reserved.
@@ -265,7 +264,7 @@ export function Footer() {
                   }}
                   whileHover={{ y: -2, transition: { duration: 0.2 } }}
                 >
-                  <Link href={link.href} className="text-gray-400 hover:text-white text-sm transition-colors">
+                  <Link href={link.href} className="text-accent-500 hover:text-accent-600 text-sm transition-colors">
                     {link.label}
                   </Link>
                 </motion.div>
