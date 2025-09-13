@@ -40,7 +40,7 @@ export default function ServicePage({ params }: ServicePageProps) {
               <p className="text-lg text-gray-600 leading-relaxed mb-8">{service.description}</p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button size="lg" asChild>
-                  <Link href="/quote">
+                  <Link href="/contact/quote">
                     Get a Quote
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
@@ -143,7 +143,7 @@ export default function ServicePage({ params }: ServicePageProps) {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" asChild>
-                <Link href="/quote">
+                <Link href="/contact/quote">
                   Request Service Quote
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>

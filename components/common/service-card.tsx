@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Truck, Warehouse, Shield, ArrowRight } from "lucide-react"
+import { Truck, Warehouse, Shield, ArrowRight, Plane, Package, Ship } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
@@ -10,19 +10,22 @@ const iconMap = {
   Truck,
   Warehouse,
   Shield,
+  Plane,
+  Package,
+  Ship,
 }
 
 interface ServiceCardProps {
   id: string
   title: string
   description: string
-  icon: keyof typeof iconMap
+  icon: string // Made more flexible to accept any string
   features: string[]
   showCTA?: boolean
 }
 
 export function ServiceCard({ id, title, description, icon, features, showCTA = false }: ServiceCardProps) {
-  const IconComponent = iconMap[icon]
+  const IconComponent = iconMap[icon as keyof typeof iconMap] || Truck // Fallback to Truck icon if icon not found
 
   return (
     <motion.div
@@ -35,23 +38,25 @@ export function ServiceCard({ id, title, description, icon, features, showCTA = 
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
-      <Card className="h-full hover:shadow-2xl transition-all duration-500 group border-0 shadow-lg hover:shadow-primary-500/20">
+      <Card className="h-full min-h-[450px] flex flex-col hover:shadow-2xl transition-all duration-500 group border-0 shadow-lg hover:shadow-primary-500/20">
         <CardHeader className="relative overflow-hidden">
           <motion.div
             className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary-600 transition-colors duration-300"
             whileHover={{ rotate: 360 }}
             transition={{ duration: 0.6 }}
           >
-            <IconComponent className="h-6 w-6 text-primary-600 group-hover:text-white transition-colors duration-300" />
+            {IconComponent && (
+              <IconComponent className="h-6 w-6 text-primary-600 group-hover:text-white transition-colors duration-300" />
+            )}
           </motion.div>
           <CardTitle className="text-xl group-hover:text-primary-600 transition-colors duration-300">{title}</CardTitle>
           <CardDescription className="group-hover:text-gray-700 transition-colors duration-300">
             {description}
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 flex-1 flex flex-col justify-between">
           <motion.ul
-            className="space-y-2"
+            className="space-y-2 flex-1"
             variants={{
               hidden: {},
               visible: {
@@ -82,7 +87,7 @@ export function ServiceCard({ id, title, description, icon, features, showCTA = 
             ))}
           </motion.ul>
           {showCTA && (
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="mt-auto pt-4">
               <Button
                 asChild
                 variant="outline"

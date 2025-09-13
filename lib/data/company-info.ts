@@ -1,14 +1,14 @@
 export const companyInfo = {
-  name: "DpNEx Logistics",
-  tagline: "DpNEx Logistics",
+  name: "DPNEX",
+  tagline: "Reliable, Fast, Your Logistics Partner",
   description:
-    "Delivering excellence in cargo transportation, warehousing, and specialized logistics solutions across the nation. Move faster and smarter, missioned to ensure your shipments are handled with care every time. Based in Nepal, available at 0097715137113/7114, info@dpnexlogistic.com, dpnexlogistic.com to eliminating logistics headaches.",
+    "By Air and Sea, we connect Nepal to the World. From transportation and warehousing to specialized logistics, DPNEX ensures every shipment is handled with care, speed, and reliability. Delivering excellence in cargo & courier services worldwide.",
   content:
-    "dpnexlogistic, dpnex, courier, cargo, logistic, kathmandu, Nepal, ship, dhl, fedex, parcel, home, delivery, skynet, tia",
+    "dpnex, courier, cargo, logistic, kathmandu, Nepal, export, import, sea freight, air cargo, dhl, fedex, ups, international shipping, customs clearance",
   contact: {
-    phone: "+1 (555) 123-4567",
-    email: "info@logiflowsolutions.com",
-    address: "1234 Industrial Blvd, Logistics City, LC 12345",
+    phone: "+977-1-5137113/7114",
+    email: "info@dpnex.com",
+    address: "Dhalko Chhetrapati 16, Kathmandu, Nepal",
     hours: "Mon-Fri: 8:00 AM - 6:00 PM, Sat: 9:00 AM - 2:00 PM",
   },
 
@@ -19,9 +19,17 @@ export const companyInfo = {
   },
 
   stats: {
-    yearsInBusiness: 15,
-    clientsServed: "500+",
-    deliveriesCompleted: "50,000+",
-    fleetSize: 120,
+    yearsInBusiness: 9,
+    clientsServed: "1000+",
+    deliveriesCompleted: "100,000+",
+    globalHubs: "15+",
+  },
+
+  mission: "To provide innovative, reliable, and cost-effective logistics solutions that empower businesses worldwide.",
+  vision: "To become Nepal's most trusted global logistics partner, setting new standards in reliability, transparency, and customer service.",
+  
+  ceo: {
+    name: "Mr. Dipendra Pandey",
+    message: "With over a decade of logistics expertise, I founded DPNEX to connect Nepal with the world through trust, innovation, and reliability. We are not just moving goods—we are enabling growth, building trust, and creating opportunities for businesses and communities.",
   },
 };

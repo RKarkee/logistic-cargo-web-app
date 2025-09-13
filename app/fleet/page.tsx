@@ -57,7 +57,7 @@ export default function FleetPage() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button size="lg" asChild>
-                  <Link href="/quote">
+                  <Link href="/contact/quote">
                     Request Service
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
@@ -389,7 +389,7 @@ export default function FleetPage() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Button size="lg" variant="secondary" asChild>
-                    <Link href="/quote">
+                    <Link href="/contact/quote">
                       Get Fleet Quote
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>

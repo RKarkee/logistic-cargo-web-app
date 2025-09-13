@@ -157,24 +157,69 @@ export default function AboutPage() {
             <Timeline items={aboutData.timeline} />
           </AnimatedSection>
         </Container>
-      </Section>
+      </Section>     
 
-      {/* Leadership Team */}
-      <Section>
+      {/* Management Team */}
+      <Section background="gray">
         <Container>
           <AnimatedSection animation="fadeInUp" delay={0.2}>
             <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{aboutData.team.title}</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">{aboutData.team.description}</p>
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{aboutData.managementTeam.title}</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">{aboutData.managementTeam.description}</p>
             </div>
           </AnimatedSection>
           <motion.div
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
             variants={{
               hidden: {},
               visible: {
                 transition: {
-                  staggerChildren: 0.2,
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+            initial="hidden"
+            animate="visible"
+          >
+            {aboutData.managementTeam.members.map((member, index) => (
+              <motion.div
+                key={index}
+                className="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col items-center"
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
+                <div className="w-44 h-44 relative mb-4 flex justify-center items-center">
+                  <AnimatedImage
+                    src={member.image || "/placeholder.svg"}
+                    alt={member.name}
+                    width={128}
+                    height={128}
+                    className="!w-44 !h-44 rounded-full shadow-lg border-4 border-white object-cover"
+                    animation="scaleIn"
+                    delay={index * 0.2}
+                  />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-1 text-center">{member.name}</h3>
+                <p className="text-primary-600 font-medium text-sm text-center">{member.role}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </Container>
+      </Section>
+     {/* Leadership Team */}
+      <Section>
+       <Container>
+         
+          <motion.div
+            className="space-y-8"
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  staggerChildren: 0.3,
                 },
               },
             }}
@@ -184,25 +229,43 @@ export default function AboutPage() {
             {aboutData.team.members.map((member, index) => (
               <motion.div
                 key={index}
-                className="text-center"
+                className="bg-white rounded-2xl shadow-lg overflow-hidden"
                 variants={{
                   hidden: { opacity: 0, y: 30 },
                   visible: { opacity: 1, y: 0 },
                 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <AnimatedImage
-                  src={member.image || "/placeholder.svg"}
-                  alt={member.name}
-                  width={300}
-                  height={300}
-                  className="rounded-2xl mx-auto mb-6 shadow-lg"
-                  animation="scaleIn"
-                  delay={index * 0.2}
-                />
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{member.name}</h3>
-                <p className="text-primary-600 font-medium mb-3">{member.role}</p>
-                <p className="text-gray-600">{member.bio}</p>
+                <div className="flex flex-col lg:flex-row">
+                  {/* Left side - Image and Info */}
+                  <div className="lg:w-1/3 p-8 bg-gradient-to-br from-primary-50 to-primary-100 flex flex-col items-center justify-center text-center">
+                    <div className="w-44 h-44 relative mb-6">
+                      <AnimatedImage
+                        src={member.image || "/placeholder.svg"}
+                        alt={member.name}
+                        width={128}
+                        height={128}
+                        className="!w-44 !h-44 rounded-full shadow-lg border-4 border-white object-cover"
+                        animation="scaleIn"
+                        delay={index * 0.2}
+                      />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{member.name}</h3>
+                    <p className="text-primary-600 font-semibold text-lg mb-3">{member.role}</p>
+                    {/* <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p> */}
+                  </div>
+                  
+                  {/* Right side - Message */}
+                  <div className="lg:w-2/3 p-8 flex flex-col justify-center">
+                    <div className="mb-4">
+                      <h4 className="text-xl font-semibold text-gray-900 mb-2">Message from {member.role}</h4>
+                      <div className="w-16 h-1 bg-primary-500 rounded"></div>
+                    </div>
+                    <blockquote className="text-gray-700 leading-relaxed text-lg italic">
+                      "{member.bio}"
+                    </blockquote>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </motion.div>

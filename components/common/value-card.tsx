@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Shield, Eye, Lightbulb, Users } from "lucide-react"
+import { Shield, Eye, Lightbulb, Users, Globe } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 const iconMap = {
@@ -9,16 +9,17 @@ const iconMap = {
   Eye,
   Lightbulb,
   Users,
+  Globe,
 }
 
 interface ValueCardProps {
   title: string
   description: string
-  icon: keyof typeof iconMap
+  icon: keyof typeof iconMap | string
 }
 
 export function ValueCard({ title, description, icon }: ValueCardProps) {
-  const IconComponent = iconMap[icon]
+  const IconComponent = iconMap[icon as keyof typeof iconMap] || Shield // fallback to Shield icon
 
   return (
     <motion.div
@@ -41,7 +42,7 @@ export function ValueCard({ title, description, icon }: ValueCardProps) {
             }}
             transition={{ duration: 0.5 }}
           >
-            <IconComponent className="h-8 w-8 text-primary-600 group-hover:text-white transition-colors duration-500" />
+            {IconComponent && <IconComponent className="h-8 w-8 text-primary-600 group-hover:text-white transition-colors duration-500" />}
           </motion.div>
           <CardTitle className="text-xl group-hover:text-primary-600 transition-colors duration-300">
             <motion.span whileHover={{ scale: 1.05 }} className="inline-block">

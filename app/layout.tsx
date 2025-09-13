@@ -43,7 +43,7 @@ export default function RootLayout({
           sizes="114x114"
           href="https://dpnexlogistic.com/storage/others/dpnex-114.png"
         ></link>
-        {/* <link rel="icon" href="/favicon.png" type="image/png" sizes="48x48" /> */}
+        <link rel="icon" href="/favicon.png" type="image/png" sizes="48x48" />
       </head>
       <body className={inter.className}>
         <ScrollProgress />

@@ -62,7 +62,7 @@ export default function CertificationsPage() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button size="lg" asChild>
-                  <Link href="/quote">
+                  <Link href="/contact/quote">
                     Work With Certified Experts
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
@@ -361,7 +361,7 @@ export default function CertificationsPage() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Button size="lg" variant="secondary" asChild>
-                    <Link href="/quote">
+                    <Link href="/contact/quote">
                       Get Certified Service
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>

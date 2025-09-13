@@ -1,26 +1,26 @@
 export const certifications = [
   {
     id: 1,
-    name: "ISO 9001:2015",
-    description: "Quality Management Systems",
+    name: "NEFFA Member",
+    description: "Nepal Freight Forwarders Association",
     logo: "/placeholder.svg?height=60&width=120",
   },
   {
     id: 2,
-    name: "DOT Certified",
-    description: "Department of Transportation Compliance",
+    name: "Export Council of Nepal",
+    description: "Official member promoting Nepal's exports",
     logo: "/placeholder.svg?height=60&width=120",
   },
   {
     id: 3,
-    name: "C-TPAT",
-    description: "Customs-Trade Partnership Against Terrorism",
+    name: "JCTRANS Network",
+    description: "Global logistics network partnership",
     logo: "/placeholder.svg?height=60&width=120",
   },
   {
     id: 4,
-    name: "HAZMAT Certified",
-    description: "Hazardous Materials Transportation",
+    name: "FHAN Affiliate",
+    description: "Federation of Handicraft Associations of Nepal",
     logo: "/placeholder.svg?height=60&width=120",
   },
 ]
@@ -28,22 +28,42 @@ export const certifications = [
 export const partnerships = [
   {
     id: 1,
-    name: "FreightNet Alliance",
+    name: "DHL Express",
     logo: "/placeholder.svg?height=50&width=140",
   },
   {
     id: 2,
-    name: "Global Logistics Network",
+    name: "UPS Worldwide",
     logo: "/placeholder.svg?height=50&width=140",
   },
   {
     id: 3,
-    name: "TruckStop Partners",
+    name: "FedEx International",
     logo: "/placeholder.svg?height=50&width=140",
   },
   {
     id: 4,
-    name: "Supply Chain Excellence",
+    name: "Qatar Airways Cargo",
+    logo: "/placeholder.svg?height=50&width=140",
+  },
+  {
+    id: 5,
+    name: "Thai Airways",
+    logo: "/placeholder.svg?height=50&width=140",
+  },
+  {
+    id: 6,
+    name: "Etihad Cargo",
+    logo: "/placeholder.svg?height=50&width=140",
+  },
+  {
+    id: 7,
+    name: "Cathay Pacific Cargo",
+    logo: "/placeholder.svg?height=50&width=140",
+  },
+  {
+    id: 8,
+    name: "CMA CGM",
     logo: "/placeholder.svg?height=50&width=140",
   },
 ]

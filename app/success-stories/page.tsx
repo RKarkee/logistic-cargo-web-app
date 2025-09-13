@@ -45,7 +45,7 @@ export default function SuccessStoriesPage() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button size="lg" asChild>
-                  <Link href="/quote">
+                  <Link href="/contact/quote">
                     Start Your Success Story
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
@@ -261,7 +261,7 @@ export default function SuccessStoriesPage() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Button size="lg" variant="secondary" asChild>
-                    <Link href="/quote">
+                    <Link href="/contact/quote">
                       Get Started Today
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>

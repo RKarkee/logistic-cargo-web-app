@@ -67,7 +67,7 @@ export function AnimatedImage({
   return (
     <motion.div
       ref={ref}
-      variants={variants[animation]}
+      variants={variants[animation] as any}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       className={cn("overflow-hidden", className)}
@@ -83,6 +83,7 @@ export function AnimatedImage({
         height={height}
         className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
         priority={priority}
+      
       />
     </motion.div>
   )

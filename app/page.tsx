@@ -13,6 +13,9 @@ import { companyInfo } from "@/lib/data/company-info"
 import { services } from "@/lib/data/services"
 import { testimonials } from "@/lib/data/testimonials"
 import { certifications, partnerships } from "@/lib/data/certifications"
+import { TestimonialsCarousel } from "@/components/common/testimonials-carousel"
+import { CertificationsCarousel } from "@/components/common/certifications-carousel"
+import { GlobalHubsCarousel } from "@/components/common/global-hubs-carousel"
 import { motion } from "framer-motion"
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { AnimatedText } from "@/components/ui/animated-text"
@@ -20,12 +23,12 @@ import { AnimatedImage } from "@/components/ui/animated-image"
 import { FloatingElement } from "@/components/ui/floating-elements"
 
 const whyChooseUs = [
-  "Industry-leading on-time delivery rate",
-  "Real-time tracking and transparency",
-  "Comprehensive insurance coverage",
-  "Dedicated customer support team",
-  "Flexible and scalable solutions",
-  "Competitive pricing with no hidden fees",
+  "Scalable solutions for all businesses",
+  "Real-time tracking & transparency",
+  "Dedicated customer support",
+  "Competitive pricing",
+  "Claims processed as per carrier guidelines",
+  "Global network coverage",
 ]
 
 export default function HomePage() {
@@ -70,7 +73,7 @@ export default function HomePage() {
                 >
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Button size="lg" asChild className="bg-primary-600 hover:bg-primary-900 text-white">
-                      <Link href="/quote">
+                      <Link href="/contact/quote">
                         Request a Quote
                         <motion.div className="ml-2" whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
                           <ArrowRight className="h-5 w-5" />
@@ -173,7 +176,7 @@ export default function HomePage() {
         <Container>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Why Choose DpNEx Logistics?</h2>
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Why Choose DPNEX?</h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 {whyChooseUs.map((item, index) => (
                   <div key={index} className="flex items-start space-x-3">
@@ -205,40 +208,22 @@ export default function HomePage() {
       </Section>
 
       {/* Testimonials Section */}
-      <Section background="gray">
+            {/* Testimonials */}
+      <Section className="bg-gradient-to-br from-blue-50 to-indigo-50">
         <Container>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
-            <p className="text-xl text-gray-600">Trusted by businesses across the nation</p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((testimonial) => (
-              <Card key={testimonial.id} className="h-full">
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-gray-700 mb-6 italic">"{testimonial.content}"</p>
-                  <div className="flex items-center space-x-3">
-                    <Image
-                      src={testimonial.image || "/placeholder.svg"}
-                      alt={testimonial.name}
-                      width={48}
-                      height={48}
-                      className="rounded-full"
-                    />
-                    <div>
-                      <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                      <div className="text-sm text-gray-600">{testimonial.role}</div>
-                      <div className="text-sm text-gray-500">{testimonial.company}</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <AnimatedSection>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                What Our Clients Say
+              </h2>
+              <p className="text-lg text-primary-600 max-w-2xl mx-auto">
+                Hear from businesses that trust DpNex for their logistics needs
+              </p>
+            </div>
+            <TestimonialsCarousel 
+              testimonials={testimonials}
+            />
+          </AnimatedSection>
         </Container>
       </Section>
 
@@ -247,48 +232,21 @@ export default function HomePage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Certifications & Partners</h2>
-            <p className="text-xl text-gray-600">Trusted certifications and strategic partnerships</p>
+            <p className="text-xl text-primary-600">Trusted certifications and strategic partnerships</p>
           </div>
 
-          <div className="space-y-12">
-            {/* Certifications */}
-            <div>
-              <h3 className="text-xl font-semibold text-center mb-8">Our Certifications</h3>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-                {certifications.map((cert) => (
-                  <div key={cert.id} className="text-center">
-                    <Image
-                      src={cert.logo || "/placeholder.svg"}
-                      alt={cert.name}
-                      width={120}
-                      height={60}
-                      className="mx-auto mb-3"
-                    />
-                    <h4 className="font-semibold text-gray-900">{cert.name}</h4>
-                    <p className="text-sm text-gray-600">{cert.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <CertificationsCarousel />
+        </Container>
+      </Section>
 
-            {/* Partners */}
-            <div>
-              <h3 className="text-xl font-semibold text-center mb-8">Strategic Partners</h3>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 items-center">
-                {partnerships.map((partner) => (
-                  <div key={partner.id} className="text-center">
-                    <Image
-                      src={partner.logo || "/placeholder.svg"}
-                      alt={partner.name}
-                      width={140}
-                      height={50}
-                      className="mx-auto opacity-70 hover:opacity-100 transition-opacity"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+      {/* Global Strategic Hubs */}
+      <Section>
+        <Container>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Our Global Strategic Hubs</h2>
+            <p className="text-xl text-primary-600">Worldwide network ensuring seamless logistics connectivity</p>
           </div>
+          <GlobalHubsCarousel />
         </Container>
       </Section>
 
@@ -302,7 +260,7 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" asChild className="bg-accent-500 hover:bg-accent-600 text-white">
-                <Link href="/quote">
+                <Link href="/contact/quote">
                   Get Your Quote
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>

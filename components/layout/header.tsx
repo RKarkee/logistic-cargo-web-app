@@ -35,6 +35,23 @@ export function Header() {
   const [servicesOpen, setServicesOpen] = useState(false);
   const pathname = usePathname();
 
+  // Helper function to check if a navigation item is active
+  const isActive = (href: string, hasSubmenu = false) => {
+    // Exact match
+    if (pathname === href) return true;
+    
+    // For parent sections (including those without submenus), check if URL starts with the href
+    // but avoid matching "/" for all pages
+    if (pathname.startsWith(href) && href !== "/") return true;
+    
+    return false;
+  };
+
+  // Helper function to check if any submenu item is active
+  const isSubmenuActive = (submenu: any[]) => {
+    return submenu.some(item => pathname === item.href);
+  };
+
   return (
     <motion.header
       className="bg-white shadow-sm sticky top-0 z-50"
@@ -89,7 +106,7 @@ export function Header() {
                       className={cn(
                         "flex items-center space-x-1 transition-colors",
                         "text-primary-900 hover:text-accent-500",
-                        servicesOpen && "text-accent-500"
+                        (servicesOpen || isActive(item.href) || isSubmenuActive(item.submenu)) && "text-accent-500"
                       )}
                       whileHover={{ scale: 1.05 }}
                     >
@@ -101,6 +118,15 @@ export function Header() {
                         <ChevronDown className="h-4 w-4" />
                       </motion.div>
                     </motion.button>
+
+                    {/* Active indicator for Services when submenu is active */}
+                    {(isActive(item.href) || isSubmenuActive(item.submenu)) && (
+                      <motion.div
+                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent-500"
+                        layoutId="activeTab"
+                        transition={{ duration: 0.2 }}
+                      />
+                    )}
 
                     <AnimatePresence>
                       {servicesOpen && (
@@ -126,7 +152,7 @@ export function Header() {
                                 className={cn(
                                   "block px-4 py-3 transition-colors",
                                   "text-primary-700 hover:text-accent-500 hover:bg-gray-300",
-                                  pathname === subItem.href && "text-accent-500"
+                                  pathname === subItem.href && "text-accent-500 bg-gray-50"
                                 )}
                               >
                                 <div className="font-medium">
@@ -152,11 +178,11 @@ export function Header() {
                       className={cn(
                         "transition-colors relative",
                         "text-primary-900 hover:text-accent-500",
-                        pathname === item.href && "text-accent-500 font-medium"
+                        isActive(item.href) && "text-accent-500 font-medium"
                       )}
                     >
                       {item.name}
-                      {pathname === item.href && (
+                      {isActive(item.href) && (
                         <motion.div
                           className="absolute -bottom-1 left-0 right-0 h-0.5 bg-accent-500"
                           layoutId="activeTab"
@@ -174,7 +200,7 @@ export function Header() {
           <div className="hidden lg:block">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button asChild className="bg-primary-600 hover:bg-primary-900 text-white">
-                <Link href="/quote">Request Quote</Link>
+                <Link href="/contact/quote">Request Quote</Link>
               </Button>
             </motion.div>
           </div>
@@ -247,7 +273,7 @@ export function Header() {
                       href={item.href}
                       className={cn(
                         "block py-2 text-primary-900 hover:text-accent-500 transition-colors",
-                        pathname === item.href && "text-accent-500 font-medium"
+                        (isActive(item.href) || (item.submenu && isSubmenuActive(item.submenu))) && "text-accent-500 font-medium"
                       )}
                       onClick={() => setMobileMenuOpen(false)}
                     >
@@ -281,7 +307,7 @@ export function Header() {
                 >
                   <Button asChild className="w-full">
                     <Link
-                      href="/quote"
+                      href="/contact/quote"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       Request Quote

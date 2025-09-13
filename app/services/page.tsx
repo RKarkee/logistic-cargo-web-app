@@ -43,7 +43,7 @@ export default function ServicesPage() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button size="lg" asChild>
-                  <Link href="/quote">
+                  <Link href="/contact/quote">
                     Get Started Today
                     <motion.div className="ml-2" whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
                       <ArrowRight className="h-5 w-5" />
@@ -203,7 +203,7 @@ export default function ServicesPage() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Button size="lg" variant="secondary" asChild>
-                    <Link href="/quote">
+                    <Link href="/contact/quote">
                       Request a Quote
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>

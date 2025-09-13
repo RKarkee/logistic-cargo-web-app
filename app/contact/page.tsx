@@ -42,7 +42,7 @@ export default function ContactPage() {
               find the perfect solution for your business needs.
             </p>
             <Button size="lg" asChild>
-              <Link href="/quote">
+              <Link href="/contact/quote">
                 Skip to Quote Request
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>

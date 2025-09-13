@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Container } from "@/components/ui/container"
 import { Section } from "@/components/ui/section"
 import { branches } from "@/lib/data/branches"
+import { globalHubs } from "@/lib/data/global-hubs"
 import { motion } from "framer-motion"
 import { AnimatedSection } from "@/components/ui/animated-section"
 import { AnimatedText } from "@/components/ui/animated-text"
@@ -89,8 +90,8 @@ export default function BranchesPage() {
               >
                 <Card className="h-full hover:shadow-2xl transition-all duration-500 group border-0 shadow-lg hover:shadow-primary-500/20">
                   <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <div>
+                    <div className="flex  justify-between">
+                      <div className="flex items-center space-x-3">
                         <CardTitle className="text-xl mb-2 group-hover:text-primary-600 transition-colors duration-300">
                           {branch.name}
                         </CardTitle>
@@ -100,7 +101,7 @@ export default function BranchesPage() {
                             animate={{ scale: 1 }}
                             transition={{ delay: index * 0.2 + 0.5, duration: 0.3 }}
                           >
-                            <Badge variant="secondary" className="mb-2">
+                            <Badge variant="default" className="mb-2 ">
                               Headquarters
                             </Badge>
                           </motion.div>
@@ -151,35 +152,35 @@ export default function BranchesPage() {
                       <span className="text-gray-700">{branch.hours}</span>
                     </motion.div>
 
-                    <div className="pt-4 border-t border-gray-100">
+                    <div className="pt-4 min-h-[120px] border-t border-gray-100">
                       <h4 className="font-semibold text-gray-900 mb-2">Services Available:</h4>
                       <motion.div
-                        className="flex flex-wrap gap-2"
-                        variants={{
-                          hidden: {},
-                          visible: {
-                            transition: {
-                              staggerChildren: 0.1,
-                            },
-                          },
-                        }}
-                        initial="hidden"
-                        animate="visible"
+                      className="flex flex-wrap gap-2"
+                      variants={{
+                        hidden: {},
+                        visible: {
+                        transition: {
+                          staggerChildren: 0.1,
+                        },
+                        },
+                      }}
+                      initial="hidden"
+                      animate="visible"
                       >
-                        {branch.services.map((service, serviceIndex) => (
-                          <motion.div
-                            key={serviceIndex}
-                            variants={{
-                              hidden: { opacity: 0, scale: 0 },
-                              visible: { opacity: 1, scale: 1 },
-                            }}
-                            whileHover={{ scale: 1.1 }}
-                          >
-                            <Badge variant="outline" className="text-xs">
-                              {service}
-                            </Badge>
-                          </motion.div>
-                        ))}
+                      {branch.services.map((service, serviceIndex) => (
+                        <motion.div
+                        key={serviceIndex}
+                        variants={{
+                          hidden: { opacity: 0, scale: 0 },
+                          visible: { opacity: 1, scale: 1 },
+                        }}
+                        whileHover={{ scale: 1.1 }}
+                        >
+                        <Badge variant="outline" className="text-xs">
+                          {service}
+                        </Badge>
+                        </motion.div>
+                      ))}
                       </motion.div>
                     </div>
 
@@ -209,8 +210,78 @@ export default function BranchesPage() {
         </Container>
       </Section>
 
+      {/* Global Strategic Hubs */}
+      <Section>
+        <Container>
+          <AnimatedSection animation="fadeInUp" delay={0.2}>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Our Global Strategic Hubs</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Worldwide network of strategic locations ensuring seamless international logistics connectivity
+              </p>
+            </div>
+          </AnimatedSection>
+          
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+            initial="hidden"
+            animate="visible"
+          >
+            {globalHubs.map((hub, index) => (
+              <motion.div
+                key={hub.id}
+                variants={{
+                  hidden: { opacity: 0, y: 30, scale: 0.9 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    transition: { duration: 0.5, ease: "easeOut" },
+                  },
+                }}
+                whileHover={{
+                  y: -5,
+                  scale: 1.02,
+                  transition: { duration: 0.2 },
+                }}
+              >
+                <Card className="h-full hover:shadow-lg transition-all duration-300 group border bg-accent-200 border-gray-200">
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex items-center space-x-3">
+                        <span className="text-2xl">{hub.flag}</span>
+                        <div>
+                          <h3 className="font-bold text-lg text-gray-900 group-hover:text-primary-600 transition-colors duration-300">
+                            {hub.city} ({hub.hubCode})
+                          </h3>
+                          <p className="text-sm font-medium text-primary-600">{hub.country}</p>
+                        </div>
+                      </div>
+                    </div>
+                   <div className="flex-grow">
+                    <div className="flex items-center gap-2 text-sm text-gray-600 leading-relaxed">
+                      <MapPin className="h-5 w-5 align-start text-secondary-600 flex-shrink-0" />
+                      <span>{hub.address}</span>
+                    </div>
+                   </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </Container>
+      </Section>
+
       {/* Coverage Map Section */}
-      <Section background="gray">
+      {/* <Section background="gray">
         <Container>
           <AnimatedSection animation="fadeInUp" delay={0.2}>
             <div className="text-center mb-12">
@@ -243,7 +314,7 @@ export default function BranchesPage() {
             </div>
           </AnimatedSection>
         </Container>
-      </Section>
+      </Section> */}
 
       {/* CTA Section */}
       <Section className="bg-primary-600 text-white">
@@ -277,7 +348,7 @@ export default function BranchesPage() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Button size="lg" variant="secondary" asChild>
-                    <Link href="/quote">
+                    <Link href="/contact/quote">
                       Request a Quote
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>

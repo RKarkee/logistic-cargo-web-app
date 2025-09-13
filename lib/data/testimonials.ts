@@ -1,31 +1,61 @@
 export const testimonials = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    company: "TechStart Inc.",
-    role: "Operations Manager",
+    name: "Rajesh Shrestha",
+    company: "Himalayan Handicrafts",
+    role: "Export Manager",
     content:
-      "DpNEx Logistics transformed our supply chain. Their reliability and transparency have been game-changers for our growing business.",
+      "DPNEX has transformed our export business. Their expertise in customs clearance and documentation made our Amazon FBA shipments seamless. Outstanding service!",
     rating: 5,
     image: "/placeholder.svg?height=60&width=60",
   },
   {
     id: 2,
-    name: "Michael Chen",
-    company: "Global Manufacturing Co.",
+    name: "Priya Maharjan",
+    company: "Nepal Trading Co.",
     role: "Logistics Director",
     content:
-      "The specialized handling of our sensitive equipment was flawless. Their team understands the unique needs of our industry.",
+      "From sea freight to air cargo, DPNEX handles all our international shipments with precision. Their global network and real-time tracking give us complete peace of mind.",
     rating: 5,
     image: "/placeholder.svg?height=60&width=60",
   },
   {
     id: 3,
-    name: "Emily Rodriguez",
-    company: "Retail Plus",
+    name: "Michael Chen",
+    company: "E-commerce Solutions Ltd.",
+    role: "Operations Manager",
+    content:
+      "DPNEX's e-commerce export services are exceptional. Fast, reliable, and cost-effective. They've helped us expand our business to global markets successfully.",
+    rating: 5,
+    image: "/placeholder.svg?height=60&width=60",
+  },
+  {
+    id: 4,
+    name: "Suman Tamang",
+    company: "Pashmina Exports Nepal",
+    role: "Managing Director",
+    content:
+      "Working with DPNEX for over 3 years. Their DHL and FedEx express services are reliable, and their team always goes the extra mile to ensure timely deliveries.",
+    rating: 5,
+    image: "/placeholder.svg?height=60&width=60",
+  },
+  {
+    id: 5,
+    name: "David Wilson",
+    company: "Global Import LLC",
     role: "Supply Chain Manager",
     content:
-      "Outstanding warehousing services with real-time inventory tracking. Our fulfillment times have improved dramatically.",
+      "DPNEX's import services from Nepal are outstanding. Professional handling, transparent pricing, and excellent customer support. Highly recommended!",
+    rating: 5,
+    image: "/placeholder.svg?height=60&width=60",
+  },
+  {
+    id: 6,
+    name: "Anita Gurung",
+    company: "Organic Products Nepal",
+    role: "Founder",
+    content:
+      "DPNEX helped us ship our organic products to 15+ countries. Their expertise in fragile goods handling and temperature-controlled shipping is unmatched.",
     rating: 5,
     image: "/placeholder.svg?height=60&width=60",
   },
