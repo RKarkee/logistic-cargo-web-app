@@ -24,8 +24,8 @@ const navigation = [
     })),
   },
   { name: "Branches", href: "/branches" },
-  { name: "Success Stories", href: "/success-stories" },
-  { name: "Fleet", href: "/fleet" },
+  { name: "News/Notice", href: "/news-notice" },
+  { name: "My Track", href: "/my-track" },
   { name: "Certifications", href: "/certifications" },
   { name: "Contact", href: "/contact" },
 ];

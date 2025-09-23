@@ -73,10 +73,10 @@ export default function AboutPage() {
             <AnimatedSection animation="fadeInRight" delay={0.3}>
               <div className="relative">
                 <AnimatedImage
-                  src="/placeholder.svg?height=500&width=600"
+                  src="/homebg.jpeg?height=500&width=600"
                   alt="DpNEx Logistics company history"
                   width={600}
-                  height={500}
+                  height={700}
                   className="rounded-2xl shadow-lg"
                   animation="scaleIn"
                 />

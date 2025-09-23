@@ -23,6 +23,7 @@ export const companyInfo = {
     clientsServed: "1000+",
     deliveriesCompleted: "100,000+",
     globalHubs: "15+",
+    fleetSize: "50+ vehicles",
   },
 
   mission: "To provide innovative, reliable, and cost-effective logistics solutions that empower businesses worldwide.",
