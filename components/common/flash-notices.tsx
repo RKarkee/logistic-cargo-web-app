@@ -29,10 +29,13 @@ export function FlashNotices() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(true)
   const [isPaused, setIsPaused] = useState(false)
+  const [hasLoaded, setHasLoaded] = useState(false)
 
   useEffect(() => {
     const flashNotices = getHomepageFlashNotices()
     setNotices(flashNotices)
+    // Coordinate with homepage animation sequence - wait for header first
+    setTimeout(() => setHasLoaded(true), 300) // 0.6s delay to follow header animation
   }, [])
 
   useEffect(() => {
@@ -45,32 +48,90 @@ export function FlashNotices() {
     return () => clearInterval(timer)
   }, [notices.length, isPaused])
 
-  if (!isVisible || notices.length === 0) return null
+  // Update CSS custom property for positioning below header
+  useEffect(() => {
+    if (!isVisible || notices.length === 0) {
+      return
+    }
+
+    const currentNotice = notices[currentIndex]
+    const shouldBeSticky = currentNotice?.priority === 'urgent' || currentNotice?.priority === 'high'
+    
+    // No need to set CSS custom property since notice will be below header
+    
+    return () => {
+      // Cleanup if needed
+    }
+  }, [notices, currentIndex, isVisible])
+
+  if (!isVisible || notices.length === 0 || !hasLoaded) return null
 
   const currentNotice = notices[currentIndex]
   const IconComponent = typeIcons[currentNotice.type]
+  
+  // Determine if notice should be sticky based on priority
+  const shouldBeSticky = currentNotice.priority === 'urgent' || currentNotice.priority === 'high'
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       <motion.div
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: -100, opacity: 0 }}
-        transition={{ duration: 0.5 }}
+        initial={{ 
+          y: -100, 
+          opacity: 0
+        }}
+        animate={{ 
+          y: 0, 
+          opacity: 1
+        }}
+        exit={{ 
+          y: -100, 
+          opacity: 0
+        }}
+        transition={{ 
+          duration: 0.5,
+          ease: "easeOut",
+          delay: 0.2 // Additional delay after hasLoaded triggers for smooth sequence
+        }}
         className={cn(
-          "relative border-b-2 p-3",
-          priorityStyles[currentNotice.priority]
+          "relative border-b-2 p-2 sm:p-3 w-full transition-all duration-300",
+          priorityStyles[currentNotice.priority],
+          shouldBeSticky && "sticky z-30 shadow-lg",
+          !shouldBeSticky && "relative"
         )}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
-        <div className="container mx-auto flex items-center justify-between gap-4">
-          {/* Navigation for multiple notices */}
+          style={shouldBeSticky ? { top: 'var(--header-height, 96px)' } : undefined}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Sticky indicator with coordinated timing */}
+          {shouldBeSticky && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ 
+                delay: 0.4, // Appears after flash notice settles
+                duration: 0.3,
+                ease: "easeOut"
+              }}
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-white rounded-full opacity-75"
+            >
+              <motion.div
+                animate={{ scale: [1, 1.5, 1] }}
+                transition={{ 
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="w-full h-full bg-white rounded-full"
+              />
+            </motion.div>
+          )}
+        <div className="container mx-auto flex items-center justify-between gap-2 sm:gap-4">
+          {/* Navigation for multiple notices - Hidden on mobile */}
           {notices.length > 1 && (
             <Button
               variant="ghost"
               size="sm"
-              className="text-white hover:bg-white/20 p-1 h-8 w-8"
+              className="hidden sm:flex text-white hover:bg-white/20 p-1 h-8 w-8 flex-shrink-0"
               onClick={() => setCurrentIndex((prev) => (prev - 1 + notices.length) % notices.length)}
             >
               <ChevronLeft className="h-4 w-4" />
@@ -78,12 +139,12 @@ export function FlashNotices() {
           )}
 
           {/* Notice Content */}
-          <div className="flex-1 flex items-center gap-3 min-w-0">
-            <div className="flex items-center gap-2 flex-shrink-0">
-              <IconComponent className="h-5 w-5" />
+          <div className="flex-1 flex items-center gap-2 sm:gap-3 min-w-0">
+            <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
+              <IconComponent className="h-4 w-4 sm:h-5 sm:w-5" />
               <Badge
                 variant="secondary"
-                className="bg-white/20 text-white border-white/30 text-xs uppercase tracking-wide"
+                className="bg-white/20 text-white border-white/30 text-xs uppercase tracking-wide hidden sm:inline-flex"
               >
                 {currentNotice.type}
               </Badge>
@@ -99,12 +160,12 @@ export function FlashNotices() {
             >
               <Link
                 href="/news-notice"
-                className="block hover:underline"
+                className="block hover:underline group"
               >
-                <p className="font-medium truncate pr-2">
+                <p className="font-medium text-sm sm:text-base truncate pr-1 sm:pr-2 group-hover:text-white/90 transition-colors">
                   {currentNotice.title}
                 </p>
-                <p className="text-sm opacity-90 truncate pr-2">
+                <p className="text-xs sm:text-sm opacity-90 truncate pr-1 sm:pr-2 hidden sm:block group-hover:opacity-100 transition-opacity">
                   {currentNotice.summary}
                 </p>
               </Link>
@@ -112,7 +173,7 @@ export function FlashNotices() {
           </div>
 
           {/* Controls */}
-          <div className="flex items-center gap-2 flex-shrink-0">
+          <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
             {/* Dots indicator for multiple notices */}
             {notices.length > 1 && (
               <div className="flex gap-1">
@@ -121,7 +182,7 @@ export function FlashNotices() {
                     key={index}
                     onClick={() => setCurrentIndex(index)}
                     className={cn(
-                      "w-2 h-2 rounded-full transition-all duration-200",
+                      "w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-200",
                       index === currentIndex
                         ? "bg-white"
                         : "bg-white/40 hover:bg-white/60"
@@ -131,12 +192,12 @@ export function FlashNotices() {
               </div>
             )}
 
-            {/* Navigation for multiple notices */}
+            {/* Navigation for multiple notices - Hidden on mobile */}
             {notices.length > 1 && (
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-white hover:bg-white/20 p-1 h-8 w-8"
+                className="hidden sm:flex text-white hover:bg-white/20 p-1 h-8 w-8 flex-shrink-0"
                 onClick={() => setCurrentIndex((prev) => (prev + 1) % notices.length)}
               >
                 <ChevronRight className="h-4 w-4" />
@@ -147,10 +208,10 @@ export function FlashNotices() {
             <Button
               variant="ghost"
               size="sm"
-              className="text-white hover:bg-white/20 p-1 h-8 w-8"
+              className="text-white hover:bg-white/20 p-1 h-6 w-6 sm:h-8 sm:w-8 flex-shrink-0"
               onClick={() => setIsVisible(false)}
             >
-              <X className="h-4 w-4" />
+              <X className="h-3 w-3 sm:h-4 sm:w-4" />
             </Button>
           </div>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown, Truck } from "lucide-react";
@@ -34,6 +34,11 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const pathname = usePathname();
+
+  // Set header height CSS custom property
+  useEffect(() => {
+    document.documentElement.style.setProperty('--header-height', '96px') // h-24 = 96px
+  }, [])
 
   // Helper function to check if a navigation item is active
   const isActive = (href: string, hasSubmenu = false) => {
@@ -87,11 +92,11 @@ export function Header() {
             </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             {navigation.map((item, index) => (
               <motion.div
                 key={item.name}
-                className="relative"
+                className="relative whitespace-nowrap"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
@@ -104,7 +109,7 @@ export function Header() {
                   >
                     <motion.button
                       className={cn(
-                        "flex items-center space-x-1 transition-colors",
+                        "flex items-center space-x-1 transition-colors whitespace-nowrap",
                         "text-primary-900 hover:text-accent-500",
                         (servicesOpen || isActive(item.href) || isSubmenuActive(item.submenu)) && "text-accent-500"
                       )}
@@ -176,7 +181,7 @@ export function Header() {
                     <Link
                       href={item.href}
                       className={cn(
-                        "transition-colors relative",
+                        "transition-colors relative whitespace-nowrap",
                         "text-primary-900 hover:text-accent-500",
                         isActive(item.href) && "text-accent-500 font-medium"
                       )}
