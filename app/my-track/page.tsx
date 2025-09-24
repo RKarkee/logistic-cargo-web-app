@@ -1,5 +1,6 @@
 "use client"
 
+import { Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
@@ -12,7 +13,8 @@ import { AnimatedText } from "@/components/ui/animated-text"
 import { Search, Package, Truck, CheckCircle, Clock } from "lucide-react"
 import { motion } from "framer-motion"
 
-export default function MyTrackPage() {
+// Separate component that uses useSearchParams
+function TrackingSearch() {
   const [trackId, setTrackId] = useState("")
   const [isSearching, setIsSearching] = useState(false)
   const [searchResult, setSearchResult] = useState<any>(null)
@@ -67,31 +69,7 @@ export default function MyTrackPage() {
   }
 
   return (
-    <div>
-      {/* Hero Section */}
-      <Section className="bg-gradient-to-br from-primary-50 to-white" padding="xl">
-        <Container>
-          <AnimatedSection animation="fadeInUp" delay={0.2}>
-            <div className="text-center max-w-4xl mx-auto">
-              <AnimatedText
-                text="Track Your Package"
-                as="h1"
-                className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
-                animation="fadeInWords"
-              />
-              <motion.p
-                className="text-xl text-gray-600 leading-relaxed mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-              >
-                Enter your tracking number to get real-time updates on your shipment
-              </motion.p>
-            </div>
-          </AnimatedSection>
-        </Container>
-      </Section>
-
+    <>
       {/* Search Section */}
       <Section>
         <Container>
@@ -319,6 +297,67 @@ export default function MyTrackPage() {
           </Container>
         </Section>
       )}
+    </>
+  )
+}
+
+// Loading fallback component
+function TrackingSearchFallback() {
+  return (
+    <Section>
+      <Container>
+        <div className="max-w-2xl mx-auto">
+          <Card className="shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-center flex items-center justify-center gap-2">
+                <Package className="h-6 w-6 text-primary-600" />
+                My Courier Track
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="flex-1 h-10 bg-gray-200 rounded animate-pulse"></div>
+                <div className="h-10 w-24 bg-gray-200 rounded animate-pulse"></div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </Container>
+    </Section>
+  )
+}
+
+export default function MyTrackPage() {
+  return (
+    <div>
+      {/* Hero Section */}
+      <Section className="bg-gradient-to-br from-primary-50 to-white" padding="xl">
+        <Container>
+          <AnimatedSection animation="fadeInUp" delay={0.2}>
+            <div className="text-center max-w-4xl mx-auto">
+              <AnimatedText
+                text="Track Your Package"
+                as="h1"
+                className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
+                animation="fadeInWords"
+              />
+              <motion.p
+                className="text-xl text-gray-600 leading-relaxed mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+              >
+                Enter your tracking number to get real-time updates on your shipment
+              </motion.p>
+            </div>
+          </AnimatedSection>
+        </Container>
+      </Section>
+
+      {/* Search Section with Suspense */}
+      <Suspense fallback={<TrackingSearchFallback />}>
+        <TrackingSearch />
+      </Suspense>
 
       {/* Help Section */}
       <Section>
